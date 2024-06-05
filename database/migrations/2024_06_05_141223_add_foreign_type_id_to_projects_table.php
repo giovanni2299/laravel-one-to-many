@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             //
-            $table->unsignedBigInteger('type_id')->nullabe();
-            $table->foreign('type_id')->references('id')->on('types');
+            //1. aggiungi la colonna
+            $table->unsignedBigInteger('type_id')->nullable();
+            //definendo il vincollo fra le due colonne delle tabelle
+            $table->foreign('type_id')->references('id')->on('types')->onDelete('set null');
         });
     }
 
@@ -25,6 +27,12 @@ return new class extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             //
-        });
+            
+            //2 rimuovi il vincolo 
+            $table->dropForeign('projects_type_id_foreign');
+            //1 rimuoviamo la colonna 
+            $table->dropColumn('type_id');
+
+        }); 
     }
 };

@@ -14,13 +14,6 @@
 
             <div class="mb-3">
                 <div>
-                    <label for="title">Slug:</label>
-                </div>
-                <input type="text" name="slug" id="slug" class="form-control" placeholder="Slug">
-            </div>
-
-            <div class="mb-3">
-                <div>
                     <label for="title">Descrizione:</label>
                 </div>
                 <input type="text" name="description" id="description" class="form-control" placeholder="Descrizione progetto">
