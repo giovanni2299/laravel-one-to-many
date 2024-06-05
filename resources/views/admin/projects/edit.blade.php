@@ -17,6 +17,19 @@
 
         <div class="mb-3">
             <div>
+                <label for="type_id">Type:</label>
+            </div>
+            <select name="type_id" id="type_id">
+                <option value="">--SELECT TYPE--</option>
+                @foreach ($types as $type)
+                <option  value="{{$type->id}}">{{$type->name}}</option>
+                    
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <div>
                 <label for="title">Descrizione:</label>
             </div>
             <input type="text" name="description" id="description" class="form-control" placeholder="Descrizione progetto" value="{{$project->description}}">

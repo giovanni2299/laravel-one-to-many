@@ -10,7 +10,14 @@
                 </div>
                 <div class="card-body">
                     <p>{{$project->slug}}</p>
-                    <p>{{$project->description}}</p>
+                    <p>
+                        Description:
+                        {{$project->description}}
+                    </p>
+                    <p>
+                        Type:
+                        {{optional($project->type)->name}}
+                    </p>
 
                     <div class="d-flex gap-2">
                         <a class="btn me-2 btn-primary" href="{{ route('admin.projects.edit', $project) }}">edita perogetto  </a>
