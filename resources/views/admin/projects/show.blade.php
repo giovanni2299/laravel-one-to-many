@@ -25,13 +25,43 @@
                     <div class="d-flex gap-2">
                         <a class="btn me-2 btn-primary" href="{{ route('admin.projects.edit', $project) }}">edita perogetto  </a>
 
-                        <form action="{{ route('admin.projects.destroy',$project) }}" method="POST">
-                          @method('DELETE')
-                          @csrf
-          
-                          <button class="btn btn-danger" href="">elimina perogetto</button>
-          
-                        </form>
+                        <div id="form" class="d-flex justify-content-center align-items-center gap-4">
+
+                            <button class="btn btn-danger" id="trash">Elimina progetto</button>
+                        </div>
+                        </div>
+                        <script>
+                            let trash = document.getElementById('trash')
+                
+                            trash.addEventListener('click', function() {
+                
+                                let form = document.getElementById('form')
+                
+                                let trashConf = confirm('Sei sicuro di volere eliminare?')
+                                if (trashConf === true) {
+                
+                                    form.innerHTML +=
+                                        `
+                                          <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">
+                                          @method('DELETE')
+                                          @csrf
+                
+                                          
+                     
+                                          <button type="submit" style="display:none;" id='confirm'>trash</button>
+                
+                                          </form>
+                                        `
+                                    let confirm = document.getElementById('confirm').click()
+                
+                                }
+                
+                
+                            })
+                        </script>
+                
+                
+                        </div>
                     </div>
 
                 </div>

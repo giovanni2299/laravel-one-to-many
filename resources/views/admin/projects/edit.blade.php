@@ -22,11 +22,17 @@
             <select name="type_id" id="type_id">
                 <option value="">--SELECT TYPE--</option>
                 @foreach ($types as $type)
-                <option  value="{{$type->id}}">{{$type->name}}</option>
+                <option @selected( $type->id == old('type_id', $project->type_id ) ) value="{{$type->id}}">{{$type->name}}</option>
                     
                 @endforeach
             </select>
         </div>
+
+        <div class="mb-3">
+            <label for="slug" class="form-label">Slug</label>
+            <input type="text" class="form-control" name="slug" id="slug" placeholder="Slug articolo" value="{{ old('slug',$project->slug) }}">
+        </div>
+
 
         <div class="mb-3">
             <div>

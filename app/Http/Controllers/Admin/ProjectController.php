@@ -97,9 +97,24 @@ class ProjectController extends Controller
     {
         //
         $request->validated();
-
-
+        
         $form_data = $request->all();
+
+        $base_slug = Str::slug($form_data['title']);
+        $slug = $base_slug;
+        $n = 0;
+        do{
+            $find = Project::where('slug', $slug)->first();
+            if($find !== null){
+                $n++;
+                $slug = $base_slug .'-'. $n;
+            }
+        }while($find !== null);
+        $form_data['slug'] = $slug;
+
+        
+
+
 
         $project->fill($form_data); //non salva automaticamente sul db
         
