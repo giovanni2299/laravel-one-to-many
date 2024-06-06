@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use App\Models\Project;
 use App\Models\Type;
@@ -34,9 +37,10 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
         //
+        $form_data = $request->validated();
 
         $form_data = $request->all();
 
@@ -81,15 +85,20 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         //
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::all();
+        
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Project $project)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
         //
+        $request->validated();
+
+
         $form_data = $request->all();
 
         $project->fill($form_data); //non salva automaticamente sul db
@@ -98,7 +107,7 @@ class ProjectController extends Controller
         $project->save();
 
         //redirect alla comics show
-        return to_route('comics.index', $project);
+        return to_route('admin.projects.show', $project);
     }
 
     /**

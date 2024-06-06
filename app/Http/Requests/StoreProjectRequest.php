@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Validation\Rule;
 class StoreProjectRequest extends FormRequest
 {
     /**
@@ -11,7 +11,7 @@ class StoreProjectRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,11 @@ class StoreProjectRequest extends FormRequest
     {
         return [
             //
+            'title' => 'required|max:150|min:2',
+            'description' => 'required|max:1000',
+            'github_link' => 'required|max:1000',
+            'type_id' => 'required',
+            
         ];
     }
 }

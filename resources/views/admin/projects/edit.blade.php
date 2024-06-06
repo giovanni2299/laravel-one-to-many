@@ -45,5 +45,19 @@
         <button class="btn btn-primary">salva</button>
 
     </form>
+
+    <div>
+        @if ($errors->any())
+            <p class="">
+                <ul>
+                @foreach ($errors->all() as $error )
+                <li class="alert alert-danger">{{ $error }}</li>
+                @endforeach
+                </ul>
+            </p>
+        @endif
+
+    </div>
+
 </div>
 @endsection

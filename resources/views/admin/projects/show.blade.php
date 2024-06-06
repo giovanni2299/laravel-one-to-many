@@ -9,7 +9,10 @@
                     {{$project->title}}
                 </div>
                 <div class="card-body">
-                    <p>{{$project->slug}}</p>
+                    <p>
+                        Slug:
+                        {{$project->slug}}
+                    </p>
                     <p>
                         Description:
                         {{$project->description}}
